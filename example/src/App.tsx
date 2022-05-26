@@ -1,19 +1,28 @@
-import * as React from 'react';
-
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-pinch-view';
+import React from 'react';
+import { StyleSheet, View, Image } from 'react-native';
+import { PinchView, PinchViewProvider } from 'react-native-pinch-view';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
-
   return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
+    <PinchViewProvider>
+      <View style={styles.container}>
+        <PinchView minScale={0.5} maxScale={2}>
+          <Image
+            style={styles.image}
+            source={require('./cat.jpeg')}
+            resizeMode="contain"
+          />
+        </PinchView>
+
+        <PinchView>
+          <Image
+            style={styles.image}
+            source={require('./cat.jpeg')}
+            resizeMode="contain"
+          />
+        </PinchView>
+      </View>
+    </PinchViewProvider>
   );
 }
 
@@ -22,10 +31,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'purple',
   },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
+  image: {
+    width: 200,
+    height: 200,
+    backgroundColor: '#000',
+    marginBottom: 50,
   },
 });
