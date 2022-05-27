@@ -1,27 +1,40 @@
-# react-native-pinch-view
+<p align="center">
+  <h1 align="center">React Native Pinch View</h1>
+  <h3 align="center">Instagram like pinch to zoom for React Native.</h3>
+</p>
 
-Pinch view component
+## Demo
+
+![screencast](https://user-images.githubusercontent.com/40897161/170602850-b001f810-eef1-4388-a396-b4f1d011f848.gif)
+
+See [`Example`](https://github.com/hukpo/react-native-pinch-view/tree/master/example) folder.
 
 ## Installation
 
-```sh
-npm install react-native-pinch-view
+```bash
+# yarn
+yarn add react-native-pinch-view
+# npm
+npm i react-native-pinch-view
 ```
 
 ## Usage
 
 ```js
-import { multiply } from "react-native-pinch-view";
+import { PinchView } from 'react-native-pinch-view';
 
-// ...
-
-const result = await multiply(3, 7);
+<PinchView>
+  <Image source={...}>
+</PinchView>
 ```
 
-## Contributing
+### Properties
 
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+| Prop                   | Description                     | Default |
+| ---------------------- | ------------------------------- | ------- |
+| **`minScale`**         | The minimum allowed scale. | `1`          |
+| **`maxScale`**         | The maximum allowed scale. | `Infinity`   |
 
 ## License
 
-MIT
+[MIT License](http://opensource.org/licenses/mit-license.html). © Pavlo Huk 2022 - present
