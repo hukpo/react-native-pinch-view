@@ -1,6 +1,6 @@
 {
   "name": "react-native-pinch-view",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Pinch view component",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
