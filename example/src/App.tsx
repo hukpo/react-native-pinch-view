@@ -7,19 +7,11 @@ export default function App() {
     <PinchViewProvider>
       <View style={styles.container}>
         <PinchView minScale={0.5} maxScale={2}>
-          <Image
-            style={styles.image}
-            source={require('./cat.jpeg')}
-            resizeMode="contain"
-          />
+          <Image style={styles.image} source={require('./cat.jpeg')} resizeMode="contain" />
         </PinchView>
 
         <PinchView>
-          <Image
-            style={styles.image}
-            source={require('./cat.jpeg')}
-            resizeMode="contain"
-          />
+          <Image style={styles.image} source={require('./cat.jpeg')} resizeMode="contain" />
         </PinchView>
       </View>
     </PinchViewProvider>

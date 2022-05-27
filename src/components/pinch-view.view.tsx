@@ -1,11 +1,6 @@
 import { Portal } from '@gorhom/portal';
 import React, { FC, useCallback, useEffect, useState } from 'react';
-import {
-  AppState,
-  AppStateStatus,
-  LayoutChangeEvent,
-  StyleSheet,
-} from 'react-native';
+import { AppState, AppStateStatus, LayoutChangeEvent, StyleSheet } from 'react-native';
 import Animated, {
   runOnJS,
   useAnimatedStyle,
@@ -39,23 +34,15 @@ export type PinchViewProps = {
   maxScale?: number;
 };
 
-export const PinchView: FC<PinchViewProps> = ({
-  children,
-  minScale = 1,
-  maxScale = Infinity,
-}) => {
+export const PinchView: FC<PinchViewProps> = ({ children, minScale = 1, maxScale = Infinity }) => {
   /**
    * When the user releases second pointer, the focal changes
    * and we need to have the difference to prevent the child jumping
    */
   const diffFocalX = useSharedValue(INITIAL_VALUES.diffFocalX);
   const diffFocalY = useSharedValue(INITIAL_VALUES.diffFocalY);
-  const twoPointersLastFocalX = useSharedValue(
-    INITIAL_VALUES.twoPointersLastFocalX
-  );
-  const twoPointersLastFocalY = useSharedValue(
-    INITIAL_VALUES.twoPointersLastFocalY
-  );
+  const twoPointersLastFocalX = useSharedValue(INITIAL_VALUES.twoPointersLastFocalX);
+  const twoPointersLastFocalY = useSharedValue(INITIAL_VALUES.twoPointersLastFocalY);
 
   const scale = useSharedValue(INITIAL_VALUES.scale);
   const originX = useSharedValue(INITIAL_VALUES.originX);
@@ -78,16 +65,11 @@ export const PinchView: FC<PinchViewProps> = ({
     left: 0,
   });
 
-  const onChildLayout = ({
-    nativeEvent: { layout },
-  }: LayoutChangeEvent): void => {
+  const onChildLayout = ({ nativeEvent: { layout } }: LayoutChangeEvent): void => {
     setChildLayout({ width: layout.width, height: layout.height });
   };
 
-  const onTouchesDown = ({
-    allTouches: [touch],
-    numberOfTouches,
-  }: GestureTouchEvent): void => {
+  const onTouchesDown = ({ allTouches: [touch], numberOfTouches }: GestureTouchEvent): void => {
     if (numberOfTouches === 2) {
       runOnJS(setPinchablePosition)({
         top: touch.absoluteY - touch.y,
@@ -96,15 +78,11 @@ export const PinchView: FC<PinchViewProps> = ({
     }
   };
 
-  const onPinchStart = (
-    event: GestureStateChangeEvent<PinchGestureHandlerEventPayload>
-  ): void => {
+  const onPinchStart = (event: GestureStateChangeEvent<PinchGestureHandlerEventPayload>): void => {
     originX.value = event.focalX - childLayout.width / 2;
     originY.value = event.focalY - childLayout.height / 2;
   };
-  const onPinchUpdate = (
-    event: GestureUpdateEvent<PinchGestureHandlerEventPayload>
-  ): void => {
+  const onPinchUpdate = (event: GestureUpdateEvent<PinchGestureHandlerEventPayload>): void => {
     let diffX = diffFocalX.value;
     let diffY = diffFocalY.value;
 
@@ -122,10 +100,8 @@ export const PinchView: FC<PinchViewProps> = ({
         : event.scale < minScale
         ? minScale
         : maxScale;
-    translateX.value =
-      diffX + event.focalX - childLayout.width / 2 - originX.value;
-    translateY.value =
-      diffY + event.focalY - childLayout.height / 2 - originY.value;
+    translateX.value = diffX + event.focalX - childLayout.width / 2 - originX.value;
+    translateY.value = diffY + event.focalY - childLayout.height / 2 - originY.value;
   };
   const onPinchEnd = useCallback(() => {
     scale.value = withTiming(INITIAL_VALUES.scale);
