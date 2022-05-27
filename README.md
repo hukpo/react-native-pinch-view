@@ -20,7 +20,7 @@ npm i react-native-pinch-view
 
 ## Usage
 
-First, you will need to add `PortalProvider` to your root component - this usually be the `App.tsx`.
+First, you will need to add `PinchViewProvider` to your root component.
 
 ```tsx
 import { PinchViewProvider } from 'react-native-pinch-view';
